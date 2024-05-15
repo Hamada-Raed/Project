@@ -40,8 +40,5 @@ urlpatterns = [
     path('search', views.search),
     path('display_products/remove_product_list/<int:product_id>', views.remove_product_list, name="remove_product_list"),
     path('process_product', views.process_product, name="process_product"),
-    path('clear_all_product', views.clear_all_product, name="clear_all_product"),
-
-    
-    
+    path('clear_all_product', views.clear_all_product, name="clear_all_product"),    
     ]

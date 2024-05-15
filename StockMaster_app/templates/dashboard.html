@@ -197,8 +197,8 @@
                         <tbody>
                             {% for product in products %}
                             <tr>
-                                <td>{{ product.p_name }}</td>
-                                <td>{{ product.date }}</td>
+                                <td>{{ product.p_name }},</td>
+                                <td>{{ product.date }}, {{product.created_at}}</td>
                                 <td>{{ product.qty }}</td>
                                 <!-- Add more table cells if needed -->
                             </tr>

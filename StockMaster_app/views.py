@@ -150,7 +150,6 @@ def add_product(request):
 def save_product(request):
     if request.method == 'POST':
         params = dict()
-        
         params['p_name'] = request.POST.get('p_name')
         params['total_weight'] = request.POST.get('total_weight')
         params['expire_date'] = request.POST.get('expire_date')
@@ -185,7 +184,8 @@ def process_order(request):
     order_list_delete_all()
     return redirect('/order_page')
 
-# modfiy the product qty in DB: 
+# modfiy the product qty in DB: git log --oneline
+
 
 # def modfiy(request): 
 #     Prodcut.objects.filter(p_name = "p_name")
@@ -223,11 +223,10 @@ def remove_product_process(request,product_id):
 
 # Page: Display Orders Page
 def display_orders_page(request):
+    current_date = Order.objects.order_by('-created_at') 
     user = check_session(request)
-    if user:
-        orders=Order.objects.filter(user=user)
     context = {
-        'orders' : orders,
+        'orders' : current_date,
         'user' : user,
     }
     return render(request,'display_orders_page.html',context)
@@ -275,12 +274,13 @@ def  products_objects_total_qty(product_name,user):
 # ********************* THIS IS THE CALCULATION PART ***************** #
 # This function displays the dashboard to the user with calculations functions:
 def dashboard(request):
-    current_date = timezone.now().date()
+    current_date = Prodcut.objects.order_by('-created_at')
     user = check_session(request)
     if user:
         products = Prodcut.objects.filter(user=user)  # Fetch all products for the logged-in user
     context = {
-        'products': products,
+        'products': current_date,
+        
     }
     return render(request, 'dashboard.html', context)
 
@@ -296,12 +296,20 @@ def display_products(request):
         
     return render(request, 'display_products-page.html', context)
     
-def update_quantity(request, product_id):
-    product = get_object_or_404(Prodcut, pk=product_id)
-    quantity = product.total_weight - product.weight
-    product.qty -= qty
-    product.save()
-    return JsonResponse({'quantity': quantity})
+# def update_quantity(request):
+#     product = Prodcut.objects.filter(p_name=request.POST['p_name'])
+#     order = Order.objects.filter(p_name=request.POST['p_name'])
+#     total_product = 0
+#     total_order = 0 
+#     for item in product : 
+#         total_product += item.qty
+#     for item in order : 
+#         total_order += item.qty_sell
+#     total = total_product - total_order
+
+#     if (total < 0): 
+#         total = 0 
+#     return  total
 
 # product list (ajex) 
 
@@ -376,15 +384,35 @@ def all_product(request):
 # This function searches products in the db using their barcodes:
 def search(request):
     search = request.POST['search']
-    products = Prodcut.objects.all() #array 
+    user = check_session(request)
+    products = Prodcut.objects.filter(user=user) #array 
+    total_qty = 0 
     product_list = []
-    for x in products: 
-        if search == x.p_name: 
-            product_list.append(x)
-    print(product_list)
+    for product in products: 
+        if search == product.p_name: 
+            product_list.append(product)
+            total_qty += product.qty
+    if len(product_list) == 0:
+        product_list = {'p_name' : "NAN"}
+        product_list = list(product_list)
+
+    product = Prodcut.objects.filter(p_name=request.POST['search'])
+    order = Order.objects.filter(p_name=request.POST['search'])
+    total_product = 0
+    total_order = 0 
+    for item in product : 
+        total_product += item.qty
+    for item in order : 
+        total_order += item.qty_sell
+    total = total_product - total_order
+    print (total)
+    if (total < 0): 
+        total = 0 
     context = {
-        'prod_search' : product_list, 
+        'prod_search' : product_list[0], 
+        'total_qty' : total
     }
+
     return render(request, 'all_product.html', context) 
 
 # Process: Delete

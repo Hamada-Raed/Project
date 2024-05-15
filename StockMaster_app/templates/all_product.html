@@ -191,33 +191,16 @@
                         <thead>
                             <tr class="table-danger">
                                 <th scope="col">Product</th>
-                                <th scope="col">total_weight</th>
-                                <th scope="col">Expiry Date</th>
                                 <th scope="col">Estimated QTY. Left</th>
-                                <th scope="col">weight</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for product in products %}
+                        
                             <tr>
-                                <th scope="row">
-                                    {{ product.p_name }}
-                                </th>
-                                <td class="fw-bold">{{ product.p_total_weight }}</td>
-                                <td class="fw-bold">{{ product.expire_date }}</td>
-                                <td class="fw-bold">{{ product.qty }}</td>
-                                <td class="fw-bold">{{ product.weight }}</td>
+                                <th scope="row">{{ prod_search.p_name }}</th>
+                                <td class="fw-bold">{{ total_qty }}</td>
                             </tr>
-                            {% endfor %}
-                            {% for product in prod_search %}
-                            <tr>
-                                <th scope="row">{{ product.p_name }}</th>
-                                <td class="fw-bold">{{ product.p_total_weight }}</td>
-                                <td class="fw-bold">{{ product.expire_date }}</td>
-                                <td class="fw-bold">{{ product.qty }}</td>
-                                <td class="fw-bold">{{ product.weight }}</td>
-                            </tr>
-                            {% endfor %}
+                            
 
                         </tbody>
 
@@ -258,20 +241,21 @@
     <script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
     <script src="{% static 'vendor/tinymce/tinymce.min.js' %}"></script>
     <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-    <script>
+    <!-- <script>
         function validateSearch() {
-            var inputValue = document.getElementById("search").value;
-            if (inputValue === "") {
-                alert("Please enter a total_weight.");
+            var inputValue = document.getElementById("search").value
+            
+            if (inputValue) {
+                alert("هذا المنتج غير متوفر");
                 return false;
             }
-            if (!/^\d+$/.test(inputValue)) {
-                alert("Please enter a valid number.");
-                return false;
-            }
+            // if (!/^\d+$/.test(inputValue)) {
+            //     alert("Please enter a valid number.");
+            //     return false;
+            // }
             return true;
         }
-    </script>
+    </script> -->
     <!-- Template Main JS File -->
     <script src="{% static 'js/main.js' %}"></script>
     {% else %}

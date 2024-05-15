@@ -66,14 +66,11 @@ class ProdcutManager(models.Manager):
             errors['weight'] = "Weight can not be negative"
         return errors
     
-    # def order_list_validation(self,data):
-    #     errors = {}
-    #     if len(data['p_name']) < 0:
-    #         errors['p_name'] = "Please Enter The Barcode Number"
-    #     check = Prodcut.objects.filter(total_weight = data['barcode'])
-    #     if check[0] == None :
-    #         errors['barcode_not_exists'] = "The Barcode you entered dose not exists"
-    #     return errors
+    def order_list_validation(self,data):
+        errors = {}
+        if len(data['p_name']) < 0:
+            errors['p_name'] = "Please Enter The Barcode Number"
+        check = Prodcut.objects.filter(total_weight = data['barcode'])
     
 class Prodcut(models.Model): 
     p_name = models.CharField(max_length=255)

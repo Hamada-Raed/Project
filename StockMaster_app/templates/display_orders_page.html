@@ -168,9 +168,9 @@
                     <tr class="table-primary ">
                         <th scope="col">#</th>
                         <th scope="col">Product Name</th>
-                        <th scope="col">Product Barcode</th>
+                        
                         <th scope="col">Quantity</th>
-                        <th scope="col">Selling Price</th>
+                       
                         <th scope="col">Order Date</th>
                     </tr>
                 </thead>
@@ -178,10 +178,10 @@
                     {% for order in orders %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{order.products}}</td>
-                        <td>{{order.p_barcode}}</td>
+                        <td>{{order.p_name}}</td>
+                        
                         <td>{{order.qty_sell}}</td>
-                        <td>{{order.p_price}}</td>
+                        
                         <td>{{order.created_at}}</td>
                     </tr>
                     {% endfor %}
