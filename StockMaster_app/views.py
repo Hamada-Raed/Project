@@ -276,6 +276,7 @@ def  products_objects_total_qty(product_name,user):
 def dashboard(request):
     current_date = Prodcut.objects.order_by('-created_at')
     user = check_session(request)
+    
     if user:
         products = Prodcut.objects.filter(user=user)  # Fetch all products for the logged-in user
     context = {

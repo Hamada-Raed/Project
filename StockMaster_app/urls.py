@@ -1,9 +1,10 @@
 from django.urls import path     
 from . import views
 app_name = 'SM_app'
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('homepages/', views.homepage, name='homepage'),
+    path('', views.homepage, name='homepage'),
     path('signup/', views.signup_page, name='signup-page'),
     path('login/', views.signin_page, name='signin-page'),
     path('register', views.register, name='registrProcess'),
@@ -40,5 +41,12 @@ urlpatterns = [
     path('search', views.search),
     path('display_products/remove_product_list/<int:product_id>', views.remove_product_list, name="remove_product_list"),
     path('process_product', views.process_product, name="process_product"),
-    path('clear_all_product', views.clear_all_product, name="clear_all_product"),    
-    ]
+    path('clear_all_product', views.clear_all_product, name="clear_all_product"),  
+
+######################### reset the password ############################# 
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+ 
+]
