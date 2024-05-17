@@ -11,6 +11,7 @@ from datetime import timedelta
 from django.views.decorators.csrf import csrf_exempt
 import json
 import math
+from django.contrib.auth import views as auth_views
 
 
 
@@ -67,11 +68,11 @@ def register(request):
         s_name= request.POST['s_name'], 
         email=request.POST['email'], 
         password=request.POST['password'])
-        return render(request, 'pages-login-2.html')
+        return render(request, 'pages_login.html')
 
 #This function renders the Log In page upon button click
 def signin_page(request):
-    return render(request, 'pages-login-2.html')
+    return render(request, 'pages_login.html')
 
 #This function for loging process
 def login(request):
@@ -79,7 +80,7 @@ def login(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return render(request, 'pages-login-2.html')
+        return render(request, 'pages_login.html')
     else:
         user = User.objects.get(email = request.POST['email'])
         request.session['user'] = user.id
@@ -421,7 +422,6 @@ def product_list_delete_all():
 def clear_all_product(request):
     product_list_delete_all()
     return redirect('/display_products')
-
 
 
 
