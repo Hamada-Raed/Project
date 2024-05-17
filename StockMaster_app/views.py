@@ -280,6 +280,7 @@ def dashboard(request):
         products = Prodcut.objects.filter(user=user)  # Fetch all products for the logged-in user
     context = {
         'products': current_date,
+        'user' : user
         
     }
     return render(request, 'dashboard.html', context)
@@ -288,30 +289,13 @@ def dashboard(request):
 # This function displays the name of the user in the profile section
 def display_products(request):
     product = Prodcut.objects.all()
-        
     context = {
-        'user': request.user, 
+        'user': check_session(request), 
         'product' : product
         }
         
     return render(request, 'display_products-page.html', context)
-    
-# def update_quantity(request):
-#     product = Prodcut.objects.filter(p_name=request.POST['p_name'])
-#     order = Order.objects.filter(p_name=request.POST['p_name'])
-#     total_product = 0
-#     total_order = 0 
-#     for item in product : 
-#         total_product += item.qty
-#     for item in order : 
-#         total_order += item.qty_sell
-#     total = total_product - total_order
-
-#     if (total < 0): 
-#         total = 0 
-#     return  total
-
-# product list (ajex) 
+ 
 
 def product_list_process(request):
     try:
