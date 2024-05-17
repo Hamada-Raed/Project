@@ -84,7 +84,6 @@ def login(request):
         user = User.objects.get(email = request.POST['email'])
         request.session['user'] = user.id
         request.session['username'] = user.f_name
-        print('user')
         return redirect('/dashboard')
     
 # ------------------ KAREEM SECTION START ---------------------------
@@ -311,13 +310,7 @@ def product_list_process(request):
             if product_list_products:
                 for item in product_list_products:
                     total_product_list += item.qty
-            
-            # Validation: if the qty is less than 0 
-            # total_available = products_objects_total_qty(Product.p_name, user)
-            # product_list_qty = request.POST['product_qty'] 
-            # if (total_available - total_product_list) < int(product_list_qty):
-            #     return JsonResponse({'message': 'qty_Exceeded'})
-            
+
             product_name = request.POST['p_name'] 
             product_total_weight = request.POST['total_weight'] 
             product_weight = request.POST['weight'] 
@@ -428,7 +421,6 @@ def product_list_delete_all():
 def clear_all_product(request):
     product_list_delete_all()
     return redirect('/display_products')
-
 
 
 

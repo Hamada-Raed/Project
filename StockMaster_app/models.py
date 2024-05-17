@@ -91,13 +91,6 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,related_name='orders',on_delete=models.CASCADE)
 
-    @property
-    def totalValue(self):
-        return self.p_price * self.qty_sell
-    
-    def __str__(self):
-        return f"Order: {self.id} - Total Value: {self.totalValue}"
-        
 
 class Order_list(models.Model):
 
