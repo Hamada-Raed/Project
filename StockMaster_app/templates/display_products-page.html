@@ -52,12 +52,12 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="#" class="logo d-flex align-items-center">
-                <img src="{% static 'img/logo.png' %}" alt="">
-                <span class="d-none d-lg-block">Samara</span>
+              <img src="{% static 'img/logo.png' %}" alt="">
+              <span class="d-none d-lg-block">Samara</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
-        <!-- End Logo -->
+        
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 </li>
@@ -160,7 +160,7 @@
     <!-- End Sidebar-->
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Add Products</h1>
+            <h1>Add Products((اضافة منتج))</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -182,7 +182,7 @@
 
                         <div class="row justify-content-center mb-3">
                             <div class="col-sm-2 text-center fw-bold ">
-                                <label class="form-label">Product Name: </label>
+                                <label class="form-label">Product Name (نوع الحديد) </label>
                             </div>
                             <div class="col-sm-4">
                                 <input id="p_name" type="text" class="form-control" name="p_name">
@@ -191,7 +191,15 @@
                         <!-- Product Total Weight -->
                         <div class="row justify-content-center mb-3">
                             <div class="col-sm-2 text-center fw-bold ">
-                                <label class="form-label">Total Weight</label>
+                                <label class="form-label">Total Weight(الوزن الكلي)</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input id="total_weight" type="number" class="form-control" name="total_weight">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-sm-2 text-center fw-bold ">
+                                <label class="form-label">(عدد الربط)</label>
                             </div>
                             <div class="col-sm-4">
                                 <input id="total_weight" type="number" class="form-control" name="total_weight">
@@ -200,7 +208,7 @@
                         <!-- Product Price -->
                         <div class="row justify-content-center mb-3">
                             <div class="col-sm-2 text-center fw-bold ">
-                                <label class="form-label">Weight</label>
+                                <label class="form-label">Weight (وزن الحبة)</label>
                             </div>
                             <div class="col-sm-4">
                                 <input id="weight" type="number" class="form-control" name="weight">
@@ -209,7 +217,7 @@
                         <!-- Quantity -->
                         <div class="row justify-content-center mb-3">
                             <div class="col-sm-2 text-center fw-bold ">
-                                <label class="form-label">Quantity</label>
+                                <label class="form-label">Quantity(الكمية)</label>
                             </div>
                             <div class="col-sm-4">
                                 <input id="qty" type="number" class="form-control" name="qty">
@@ -218,7 +226,7 @@
                         <!-- Date -->
                         <div class="row justify-content-center mb-3">
                             <div class="col-sm-2 text-center fw-bold ">
-                                <label class="form-label">Date</label>
+                                <label class="form-label">Date(التاريخ)</label>
                             </div>
                             <div class="col-sm-4">
                                 <input id="date" type="date" class="form-control" name="date">

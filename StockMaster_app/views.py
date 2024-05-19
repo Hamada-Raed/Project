@@ -109,11 +109,11 @@ def order_list_process(request):
             product = Prodcut.objects.filter(p_name=request.POST['p_name'], user = user).first()
             order_list_products = Order_list.objects.all()
             total_order_list = 0
-            print('hi')
+            
             if order_list_products:
                 for item in order_list_products:
                     total_order_list += item.qty_sell
-            print('bi')
+            
             total_available = products_objects_total_qty(product.p_name,user)
             print(total_available - total_order_list)
             order_list_qty = request.POST['product_qty'] 
@@ -276,12 +276,14 @@ def  products_objects_total_qty(product_name,user):
 def dashboard(request):
     current_date = Prodcut.objects.order_by('-created_at')
     user = check_session(request)
+
+     
     
     if user:
         products = Prodcut.objects.filter(user=user)  # Fetch all products for the logged-in user
     context = {
         'products': current_date,
-        'user' : user
+        'user' : user,
         
     }
     return render(request, 'dashboard.html', context)
@@ -289,10 +291,11 @@ def dashboard(request):
 # ********************* HAMADA SECTION ****************************
 # This function displays the name of the user in the profile section
 def display_products(request):
-    product = Prodcut.objects.all()
+    product = Prodcut.objects.all(); 
     context = {
         'user': check_session(request), 
-        'product' : product
+        'product' : product, 
+        
         }
         
     return render(request, 'display_products-page.html', context)
@@ -326,6 +329,7 @@ def product_list_process(request):
                                         date=product_date,
                                         products="kareem")
             return JsonResponse({'message': 'Success'})
+        
     except Exception as e:
         print(e)  # Print exception for debugging
         return JsonResponse({'message': 'Invalid request'})

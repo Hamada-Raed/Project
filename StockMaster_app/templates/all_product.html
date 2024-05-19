@@ -191,6 +191,7 @@
                         <thead>
                             <tr class="table-danger">
                                 <th scope="col">Product</th>
+                                <th scope="col">Weight</th>
                                 <th scope="col">Estimated QTY. Left</th>
                             </tr>
                         </thead>
@@ -198,6 +199,8 @@
                         
                             <tr>
                                 <th scope="row">{{ prod_search.p_name }}</th>
+                                <th scope="row">{{ prod_search.qty }}</th>
+
                                 <td class="fw-bold">{{ total_qty }}</td>
                             </tr>
                             
