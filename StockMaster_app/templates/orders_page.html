@@ -72,7 +72,6 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{user.f_name}}</h6>
-                            <span>Store Manager</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -80,7 +79,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="/dashboard/profile">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>الصفحة الشخصية</span>
                             </a>
                         </li>
                         <li>
@@ -89,7 +88,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'SM_app:logout_process' %}">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>تسجيل خروج</span>
                             </a>
                         </li>
                     </ul>
@@ -104,61 +103,65 @@
     {% if user %}
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
+
         <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="nav-item">
+
+            <li class="nav-item  ">
                 <a class="nav-link collapsed " href="/dashboard">
                     <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                    <span>الصفحة الرئيسية</span>
                 </a>
-            </li>
-            <!-- End Dashboard Nav -->
+            </li><!-- End Dashboard Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/dashboard/profile">
                     <i class="bi bi-person"></i>
-                    <span>Profile</span>
+                    <span>الصفحة الشخصية</span>
                 </a>
-            </li>
-            <!-- End Profile Page Nav -->
+            </li><!-- End Profile Page Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/display_products">
                     <i class="bi bi-plus-circle"></i>
-                    <span>Add Products</span>
+                    <span>اضافة منتج</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/all_product">
                   <i class="bi bi-plus-circle"></i>
-                  <span>All Products</span>
+                  <span>جميع المنتجات</span>
                 </a>
-              </li>
-            <!-- End F.A.Q Page Nav -->
+              </li><!-- End F.A.Q Page Nav -->
+
             <li class="nav-item">
                 <a class="nav-link " href="/order_page">
                     <i class="bi bi-card-list"></i>
-                    <span>Create Order</span>
+                    <span>اخراج منتج</span>
                 </a>
-            </li>
-            <!-- End Orders Page Nav -->
+            </li><!-- End Orders Page Nav -->
+
             <!-- Order History-->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'SM_app:display_orders_page' %}">
                     <i class="bi bi-book"></i>
-                    <span>Order History</span>
+                    <span>تسجيل المخرجات</span>
                 </a>
             </li>
             <!-- End of Order History-->
+
         </ul>
-    </aside>
+
+    </aside><!-- End Sidebar-->
     <!-- End Sidebar-->
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Orders</h1>
+            <h1>اخراج منتج</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Home</a>
+                        <a href="index.html">الصفحة الرئيسية</a>
                     </li>
-                    <li class="breadcrumb-item active">Create Order</li>
+                    <li class="breadcrumb-item active">اخراج منتج</li>
                 </ol>
             </nav>
         </div>
@@ -174,7 +177,7 @@
                                 <!-- Barcode  -->
                                 <div class="row justify-content-center mb-3">
                                     <div class="col-sm-2 text-center fw-bold ">
-                                        <label class="form-label">Product Name:</label>
+                                        <label class="form-label">اسم المنتج</label>
                                     </div>
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control" name="p_name" id="p_name">
@@ -183,7 +186,7 @@
                                 <!-- Product QTY -->
                                 <div class="row justify-content-center mb-3">
                                     <div class="col-sm-2 text-center fw-bold ">
-                                        <label class="form-label">Product Quantity:</label>
+                                        <label class="form-label">الكمية</label>
                                     </div>
                                     <div class="col-sm-4">
                                         <input type="number" class="form-control" name="order_qty" id="product_qty">
@@ -191,7 +194,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-12 text-center">
-                                        <button class="btn btn-primary">Add Product</button>
+                                        <button class="btn btn-primary">اضافة المنتج </button>
                                     </div>
                                 </div>
                             </form>
@@ -204,19 +207,18 @@
                                 <thead>
                                     <tr class="table-primary">
                                         <th scope="col">#</th>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Product Quantity</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">اسم المنتج</th>
+                                        <th scope="col">الكمية</th>
+                                        <th scope="col">خذف</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-body"></tbody>
                             </table>
                             <div class="row">
                                 <div class="col-sm-12 text-end">
-                                    <a href="{% url 'SM_app:process_order' %}" class="btn btn-success">Complete
-                                        Order</a>
+                                    <a href="{% url 'SM_app:process_order' %}" class="btn btn-success">اخرج المنتج</a>
                                     <a href="{% url 'SM_app:clear_all_order_list_process' %}"
-                                        class="btn btn-danger">Clear All</a>
+                                        class="btn btn-danger">حذف الكل </a>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +273,7 @@
                         }
                         else if(response.message == "qty_Exceeded") {
                             $("#error_message").removeClass("d-none");
-                            alert("The Entered Product Quantity Has Exceeded the Available Quantity");
+                            alert("!الكمية التي تحاول إخراجها غير متوفرة");
                         }
                         else {
                             $("#error_message").removeClass("d-none");

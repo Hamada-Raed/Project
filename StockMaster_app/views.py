@@ -12,8 +12,20 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import math
 from django.contrib.auth import views as auth_views
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views import View
+from django.conf import settings
 
 
+# class SendEmailView(View):
+#     def post(self, request, *args, **kwargs):
+#         subject = request.POST.get('subject', 'Default Subject')
+#         message = request.POST.get('message', 'Default Message')
+#         recipient_list = [request.POST.get('to_email', 'hamadaraed19@gmail.com')]
+#         send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list)
+        
+#         return JsonResponse({'status': 'Email sent successfully'})
 
 # This function renders the homepage
 def homepage(request):
@@ -101,7 +113,6 @@ def is_ajax(request):
 
 #Process: Order list
 def order_list_process(request):
-
     try:
         if is_ajax(request = request) and request.method == "POST":
             # Check if the p_name is exist
@@ -109,13 +120,10 @@ def order_list_process(request):
             product = Prodcut.objects.filter(p_name=request.POST['p_name'], user = user).first()
             order_list_products = Order_list.objects.all()
             total_order_list = 0
-            
             if order_list_products:
                 for item in order_list_products:
                     total_order_list += item.qty_sell
-            
             total_available = products_objects_total_qty(product.p_name,user)
-            print(total_available - total_order_list)
             order_list_qty = request.POST['product_qty'] 
             if (total_available-total_order_list) < int(order_list_qty):
                 return JsonResponse({'message': 'qty_Exceeded'})
@@ -297,37 +305,37 @@ def display_products(request):
         'product' : product, 
         
         }
-        
     return render(request, 'display_products-page.html', context)
  
-
 def product_list_process(request):
     try:
         if is_ajax(request=request) and request.method == "POST":
-            # Check if the barcode is exist
+            # Check if the barcode exists
             user = check_session(request)
-            
             # Corrected typo in model name
             product = Prodcut.objects.filter(p_name=request.POST['p_name'], user=user).first()
             product_list_products = Product_list.objects.all()
-            total_product_list = 0
-            if product_list_products:
-                for item in product_list_products:
-                    total_product_list += item.qty
+            # total_product_list = 0
+            # if product_list_products:
+            #     for item in product_list_products:
+            #         total_product_list += item.qty/2
 
             product_name = request.POST['p_name'] 
             product_total_weight = request.POST['total_weight'] 
             product_weight = request.POST['weight'] 
-            product_qty = request.POST['product_qty'] 
+            product_qty = request.POST['product_qty']
+            product_num = request.POST['num']  # Added this line
             product_date = timezone.now() 
-
             # Corrected field names in create method
-            Product_list.objects.create(p_name=product_name,
-                                        total_weight=product_total_weight,
-                                        weight=product_weight,
-                                        qty=product_qty,  # Corrected field name
-                                        date=product_date,
-                                        products="kareem")
+            Product_list.objects.create(
+                p_name=product_name,
+                total_weight=product_total_weight,
+                weight=product_weight,
+                num=product_num,
+                qty=product_qty,
+                date=product_date,
+                products="kareem"
+            )
             return JsonResponse({'message': 'Success'})
         
     except Exception as e:
@@ -378,7 +386,6 @@ def search(request):
     if len(product_list) == 0:
         product_list = {'p_name' : "NAN"}
         product_list = list(product_list)
-
     product = Prodcut.objects.filter(p_name=request.POST['search'])
     order = Order.objects.filter(p_name=request.POST['search'])
     total_product = 0
@@ -388,7 +395,6 @@ def search(request):
     for item in order : 
         total_order += item.qty_sell
     total = total_product - total_order
-    print (total)
     if (total < 0): 
         total = 0 
     context = {
@@ -405,16 +411,31 @@ def remove_product_list(request,product_id):
     product_list.delete()
     return JsonResponse({'message': 'Success'})
 
+##################### to calculate the quntity ####################
 def process_product(request):
     # Get the objects from the order_list
     prodcut_list = Product_list.objects.all()
-    print(prodcut_list)
     # Add the objects in the prodcut_list to the Product Table*
     user = User.objects.get(id=request.session['user'])
     for product in prodcut_list:
-        Prodcut.objects.create(p_name = product.p_name, total_weight = product.total_weight, date = product.date, weight = product.weight, user = user , qty = product.qty)
-        filtered_products = Prodcut.objects.filter(user = user , p_name = product.p_name )
-        print(filtered_products)
+        total_weight = product.total_weight if product.total_weight else 1
+        weight = product.weight if product.weight else 1
+        num = product.num if product.num else 1
+        qty = product.qty if product.qty else 1
+
+        if total_weight != 1 or weight != 1:
+            total_quantity = math.floor(total_weight / weight) * num
+        if total_weight == 1 and weight == 1 and num == 1: 
+            total_quantity = product.qty
+        Prodcut.objects.create(
+            p_name=product.p_name,
+            total_weight=total_weight,
+            date=product.date,
+            weight=weight,
+            user=user,
+            qty=total_quantity
+        )
+
 
     product_list_delete_all()
     return redirect('/display_products')

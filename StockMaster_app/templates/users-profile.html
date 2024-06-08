@@ -67,7 +67,6 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{user.f_name}} {{user.l_name}}</h6>
-              <span>General Manager</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -75,7 +74,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/dashboard/profile">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>الصفحة الشخصية</span>
               </a>
             </li>
             <li>
@@ -85,7 +84,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/logout_process">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>تسجيل خروج</span>
               </a>
             </li>
           </ul><!-- End Profile Dropdown Items -->
@@ -100,52 +99,52 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+        <li class="nav-item  ">
+            <a class="nav-link collapsed " href="/dashboard">
+                <i class="bi bi-grid"></i>
+                <span>الصفحة الرئيسية</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link " href="#">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link " href="/dashboard/profile">
+                <i class="bi bi-person"></i>
+                <span>الصفحة الشخصية</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/display_products">
-          <i class="bi bi-plus-circle"></i>
-          <span>Add Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/all_product">
-          <i class="bi bi-plus-circle"></i>
-          <span>All Products</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/display_products">
+                <i class="bi bi-plus-circle"></i>
+                <span>اضافة منتج</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/all_product">
+              <i class="bi bi-plus-circle"></i>
+              <span>جميع المنتجات</span>
+            </a>
+          </li><!-- End F.A.Q Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/order_page">
-          <i class="bi bi-card-list"></i>
-          <span>Create Order</span>
-        </a>
-      </li><!-- End Orders Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/order_page">
+                <i class="bi bi-card-list"></i>
+                <span>اخراج منتج</span>
+            </a>
+        </li><!-- End Orders Page Nav -->
 
-      <!-- Order History-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'SM_app:display_orders_page' %}">
-          <i class="bi bi-book"></i>
-          <span>Order History</span>
-        </a>
-      </li>
-      <!-- End of Order History-->
+        <!-- Order History-->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'SM_app:display_orders_page' %}">
+                <i class="bi bi-book"></i>
+                <span>تسجيل المخرجات</span>
+            </a>
+        </li>
+        <!-- End of Order History-->
 
     </ul>
 
-  </aside><!-- End Sidebar-->
+</aside><!-- End Sidebar--><!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -153,9 +152,9 @@
       <h1>Profile</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item"><a href="index.html">الصفحة الرئيسية</a></li>
+          <li class="breadcrumb-item">المستخدم</li>
+          <li class="breadcrumb-item active">الصفحة الشخصية</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -166,7 +165,6 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
               <h2>{{user.f_name}} {{user.l_name}}</h2>
-              <h3>Admin</h3>
             </div>
           </div>
 
@@ -180,35 +178,35 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab"
-                    data-bs-target="#profile-overview">Overview</button>
+                    data-bs-target="#profile-overview">عرض المعلومات</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل المعلومات</button>
                 </li>
               </ul>
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Profile Details</h5>
+                  <h5 class="card-title">معلومات المستخدم</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-3 col-md-4 label ">الاسم</div>
                     <div class="col-lg-9 col-md-8">{{user.f_name}} {{user.l_name}}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Store Name</div>
+                    <div class="col-lg-3 col-md-4 label">اسم المحل</div>
                     <div class="col-lg-9 col-md-8">{{user.s_name}}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Phone</div>
+                    <div class="col-lg-3 col-md-4 label">الهاتف</div>
                     <div class="col-lg-9 col-md-8">XXXXXXXXXXXXXXXXXX</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-3 col-md-4 label">الايميل</div>
                     <div class="col-lg-9 col-md-8">{{user.email}}</div>
                   </div>
 

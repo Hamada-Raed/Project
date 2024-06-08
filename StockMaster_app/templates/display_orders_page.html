@@ -72,7 +72,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{user.f_name}}</h6>
-                            <span>Admin</span>
+                            
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -80,7 +80,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="/dashboard/profile">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>الصفحة الشخصية</span>
                             </a>
                         </li>
                         <li>
@@ -90,7 +90,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'SM_app:logout_process' %}">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>تسجيل خروج</span>
                             </a>
                         </li>
                     </ul><!-- End Profile Dropdown Items -->
@@ -102,76 +102,81 @@
     {% if user %}
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
+
         <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/dashboard">
+
+            <li class="nav-item  ">
+                <a class="nav-link collapsed " href="/dashboard">
                     <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                    <span>الصفحة الرئيسية</span>
                 </a>
-            </li>
-            <!-- End Dashboard Nav -->
+            </li><!-- End Dashboard Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/dashboard/profile">
                     <i class="bi bi-person"></i>
-                    <span>Profile</span>
+                    <span>الصفحة الشخصية</span>
                 </a>
-            </li>
-            <!-- End Profile Page Nav -->
+            </li><!-- End Profile Page Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/display_products">
                     <i class="bi bi-plus-circle"></i>
-                    <span>Add Products</span>
+                    <span>اضافة منتج</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/all_product">
+                <a class="nav-link collapsed " href="/all_product">
                   <i class="bi bi-plus-circle"></i>
-                  <span>All Products</span>
+                  <span>جميع المنتجات</span>
                 </a>
-              </li>
-            <!-- End F.A.Q Page Nav -->
+              </li><!-- End F.A.Q Page Nav -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/order_page">
                     <i class="bi bi-card-list"></i>
-                    <span>Create Order</span>
+                    <span>اخراج منتج</span>
                 </a>
-            </li>
-            <!-- End Orders Page Nav -->
+            </li><!-- End Orders Page Nav -->
+
             <!-- Order History-->
             <li class="nav-item">
                 <a class="nav-link " href="{% url 'SM_app:display_orders_page' %}">
                     <i class="bi bi-book"></i>
-                    <span>Order History</span>
+                    <span>سجل المخرجات</span>
                 </a>
             </li>
             <!-- End of Order History-->
+
         </ul>
-    </aside>
+
+    </aside><!-- End Sidebar-->
     <!-- End Sidebar-->
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Order History</h1>
+            <h1>المخرجات</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/dashboard">Home</a>
+                        <a href="/dashboard">الصفحة الرئيسية</a>
                     </li>
-                    <li class="breadcrumb-item active">Order History</li>
+                    <li class="breadcrumb-item active">المخرجات</li>
                 </ol>
             </nav>
         </div>
         <!-- End Page Title -->
         <!-- Main Content -->
+         
         <section class="section dashboard">
             <table class="table table-hover table-striped text-center">
                 <thead>
                     <tr class="table-primary ">
                         <th scope="col">#</th>
-                        <th scope="col">Product Name</th>
+                        <th scope="col">اسم المنتج</th>
                         
-                        <th scope="col">Quantity</th>
+                        <th scope="col">الكمية</th>
                        
-                        <th scope="col">Order Date</th>
+                        <th scope="col">التاريخ</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -86,7 +86,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{user.f_name}}</h6>
-              <span>Admin</span>
+              
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -94,7 +94,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/dashboard/profile">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>الصفحة الشخصية</span>
               </a>
             </li>
             <li>
@@ -104,7 +104,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{% url 'SM_app:logout_process' %}">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>تسجيل خروج</span>
               </a>
             </li>
           </ul><!-- End Profile Dropdown Items -->
@@ -119,68 +119,67 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="/dashboard">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+        <li class="nav-item  ">
+            <a class="nav-link  " href="/dashboard">
+                <i class="bi bi-grid"></i>
+                <span>الصفحة الرئيسية</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard/profile">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/dashboard/profile">
+                <i class="bi bi-person"></i>
+                <span>الصفحة الشخصية</span>
+            </a>
+        </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/display_products">
-          <i class="bi bi-plus-circle"></i>
-          <span>Add Products</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/all_product">
-          <i class="bi bi-plus-circle"></i>
-          <span>All Products</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/display_products">
+                <i class="bi bi-plus-circle"></i>
+                <span>اضافة منتج</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed " href="/all_product">
+              <i class="bi bi-plus-circle"></i>
+              <span>جميع المنتجات</span>
+            </a>
+          </li><!-- End F.A.Q Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/order_page">
-          <i class="bi bi-card-list"></i>
-          <span>Create Order</span>
-        </a>
-      </li><!-- End Orders Page Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/order_page">
+                <i class="bi bi-card-list"></i>
+                <span>اخراج منتج</span>
+            </a>
+        </li><!-- End Orders Page Nav -->
 
-      <!-- Order History-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'SM_app:display_orders_page' %}">
-          <i class="bi bi-book"></i>
-          <span>Order History</span>
-        </a>
-      </li>
-      <!-- End of Order History-->
+        <!-- Order History-->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'SM_app:display_orders_page' %}">
+                <i class="bi bi-book"></i>
+                <span>تسجيل المخرجات</span>
+            </a>
+        </li>
+        <!-- End of Order History-->
 
     </ul>
 
-  </aside><!-- End Sidebar-->
+</aside><!-- End Sidebar-->
   {% endif %}
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>الصفحة الرئيسية</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="/dashboard">الصفحة الرئيسية</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <!-- ======= Dashboard Section ======= -->
     <section class="section dashboard">
-        <h3><strong>Products</strong></h3>
+        <h3><strong>اخر المخرجات </strong></h3>
         <!-- Products Table -->
         <div class="col-12">
             <div class="card top-selling overflow-auto">
@@ -188,9 +187,9 @@
                     <table class="table table-borderless">
                         <thead>
                             <tr class="table-danger">
-                                <th scope="col">Product</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">اسم المنتج</th>
+                                <th scope="col">التاريخ</th>
+                                <th scope="col">الكمية المتبقية</th>
                                 <!-- Add more table headers if needed -->
                             </tr>
                         </thead>

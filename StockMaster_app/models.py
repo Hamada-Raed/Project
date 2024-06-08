@@ -1,5 +1,7 @@
 from django.db import models
-import re 
+from django.contrib.auth.hashers import check_password, make_password
+from django.core.exceptions import ObjectDoesNotExist
+import re
 
 class UserManager(models.Manager):
     def regValidator(self, postData):
@@ -52,6 +54,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager() 
+    def __str__(self):
+        return self.email
+
 
 class ProdcutManager(models.Manager): 
     def ProductValidator(self, postData):
@@ -108,6 +113,7 @@ class Product_list(models.Model):
     date = models.DateTimeField()
     total_weight = models.FloatField()
     weight = models.FloatField()
+    num = models.FloatField(default=1)
     products = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
